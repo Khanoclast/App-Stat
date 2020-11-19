@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>cooper’s vignette</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">cooper’s vignette</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(cooper)</span></code></pre></div>
+<p>This vignette shows you how to use 4 of the functions contained in the <em>cooper</em> library.</p>
+<div id="myncurve-for-creating-a-normal-dist.-graph-w-q-value" class="section level2">
+<h2>‘myncurve()’ for creating a Normal Dist. graph w/ q-value</h2>
+<p>If you have a normally distributed population, and you want to generate its graph and also calculate the lower-tail probability that a random specimen’s result occurs at <span class="math inline">\(\le\)</span> to some measured ‘q’ value (that the curve represents the distribution for), then this is the function for you! You must give this function the ‘q’ result you’re interested in, the ‘mu’ mean of the distribution, and the ‘sigma’ standard deviation of the distribution. Here’s an example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">myncurve</span>(<span class="dt">q =</span> <span class="dv">6</span>, <span class="dt">mu =</span> <span class="dv">10</span>, <span class="dt">sigma =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre><code>#&gt; [[1]]
+#&gt; [1] 0.1587</code></pre>
+<p>Since ‘q = 6’ is one standard deviation smaller than the mean, then we expect that only the left (roughly) 16% of the area under the curve to be shaded in to indicate with the returned value that there’s an approximately 16% chance of a specimen occurring with a measurement of 6 or lower.</p>
+</div>
+<div id="mynbin-for-calculating-the-negative-binomial-probability-at-a-point" class="section level2">
+<h2>‘mynbin()’ for calculating the Negative Binomial Probability at a point</h2>
+<p>If you have a binomial probability distribution, then you can use this function to calculate the probability of ‘r’ number of successes occurring given ‘y’ number of Bernoulli trials. Here’s an example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">mynbin</span>(<span class="dt">y =</span> <span class="dv">6</span>, <span class="dt">r =</span> <span class="dv">4</span>, <span class="dt">p =</span> <span class="fl">0.8</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] 0.16384</span></span></code></pre></div>
+<p>So if each Bernoulli trial has a p = 0.8 (which means 80%) chance of succeeding, the probability that r = 4 successes happen when running y = 6 trials is about 16%.</p>
+</div>
+<div id="myci-for-calcing-a-95-confidence-interval-for-the-mean-of-a-normally-distributed-random-sample" class="section level2">
+<h2>‘myci()’ for calc’ing a 95% Confidence Interval for the mean of a normally distributed, random sample</h2>
+<p>If you have a normally distributed, random sample, this function can calculate the 95% Confidence Interval for the mean of said sample. For example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">myci</span>(<span class="kw">rnorm</span>(<span class="dv">25</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>))</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1]  7.872091 11.981307</span></span></code></pre></div>
+<p>So the input is your data, but instead of bringing in some such data, I’ll just create my own random, normally distributed data set via the ‘rnorm()’ function where it generates 25 random numbers from a normal distribution that has a mean of 10 and standard deviation of 5. And then the result is an array of 2 numbers where the first number is the lower endpoint of the Confidence Interval and the second number is the upper endpoint of said interval.</p>
+</div>
+<div id="mycltu-creates-samples-from-a-uniform-distribution-and-then-calcs-the-mean-statistic-and-histograph" class="section level2">
+<h2>‘mycltu()’ creates samples from a Uniform Distribution and then calc’s the mean statistic and histograph</h2>
+<p>You give this function 4 inputs. ‘n’ is the size of every sample, ‘iter’ is the number of samples you want generated, and ‘a’ and ‘b’ are the lower and upper bounds (respectively) of the interval from which the code is allowed to randomly pick values, so it is effectively the domain of your Uniform Distribution. Here’s an example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">mycltu</span>(<span class="dv">30</span>, <span class="dv">10000</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>So this means we had the computer generate 10,000 samples, each with 30 specimens per sample. And we restricted the range of potential specimen values from 0 to 10. The resultant histograph also has 3 lines overlaid: a density curve made from the sample distribution, a theoretical normal curve, and the density from which the samples were taken.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
